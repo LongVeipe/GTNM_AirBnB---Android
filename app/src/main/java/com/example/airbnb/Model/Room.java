@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Room implements Serializable {
@@ -22,9 +23,9 @@ public class Room implements Serializable {
     private String description;
     @SerializedName("images")
     @Expose
-    private List<String> images;
+    private ArrayList<String> images;
 
-    public Room(String _id, String name, String location, String description, List<String> images) {
+    public Room(String _id, String name, String location, String description, ArrayList<String> images) {
         this._id = _id;
         this.name = name;
         this.location = location;
@@ -64,11 +65,11 @@ public class Room implements Serializable {
         this.description = description;
     }
 
-    public List<String> getImages() {
+    public ArrayList<String> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(ArrayList<String> images) {
         this.images = images;
     }
 }

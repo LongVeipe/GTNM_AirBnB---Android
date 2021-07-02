@@ -10,4 +10,10 @@ public class RoomDetailPresenter {
         this.view = view;
     }
 
+    void setRoom(Room room)
+    {
+        view.showLoading();
+        view.setRoom(room);
+        view.hideLoading();
+    }
 }

@@ -13,6 +13,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
@@ -45,19 +46,18 @@ public class Utils {
 
                 if (maxLine == 0) {
                     lineEndIndex = tv.getLayout().getLineEnd(0);
-                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() + 1) + " " + expandText;
+                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 1) + " " + expandText;
                 } else if (maxLine > 0 && tv.getLineCount() >= maxLine) {
                     lineEndIndex = tv.getLayout().getLineEnd(maxLine - 1);
-                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() + 1) + " " + expandText;
+                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 5) + "... " + " " + expandText;
                 } else {
                     lineEndIndex = tv.getLayout().getLineEnd(tv.getLayout().getLineCount() - 1);
                     text = tv.getText().subSequence(0, lineEndIndex) + " " + expandText;
                 }
                 tv.setText(text);
                 tv.setMovementMethod(LinkMovementMethod.getInstance());
-                tv.setText(
-                        addClickablePartTextViewResizable(new SpannableString(tv.getText().toString()), tv, lineEndIndex, expandText,
-                                viewMore), TextView.BufferType.SPANNABLE);
+                tv.setText(addClickablePartTextViewResizable(new SpannableString(tv.getText().toString()), tv, lineEndIndex, expandText, viewMore),
+                        TextView.BufferType.SPANNABLE);
             }
         });
     }
@@ -73,7 +73,7 @@ public class Utils {
                 @Override
                 public void onClick(View widget) {
                     tv.setLayoutParams(tv.getLayoutParams());
-                    tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
+                    tv.setText(tv.getTag().toString(), TextView.BufferType.NORMAL);
                     tv.invalidate();
                     if (viewMore) {
                         makeTextViewResizable(tv, -1, "View Less", false);
