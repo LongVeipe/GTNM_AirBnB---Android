@@ -6,5 +6,6 @@ public interface RoomDetailView {
     void hideLoading();
     void showLoading();
     void onErrorLoading(String message);
-    void setRoom(Room room);
+    void setRoom();
+    void setRates();
 }

@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import androidx.core.view.ContentInfoCompat;
+
 public class Utils {
 
     public static AlertDialog showDialogMessage(Context context, String title, String message) {
@@ -31,7 +33,7 @@ public class Utils {
     public static void makeTextViewResizable(final TextView tv, final int maxLine, final String expandText, final boolean viewMore) {
 
         if (tv.getTag() == null) {
-            tv.setTag(tv.getText());
+            tv.setTag(tv.getText().toString());
         }
         ViewTreeObserver vto = tv.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -46,45 +48,52 @@ public class Utils {
 
                 if (maxLine == 0) {
                     lineEndIndex = tv.getLayout().getLineEnd(0);
-                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 1) + " " + expandText;
+                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 1).toString() + " " + expandText;
                 } else if (maxLine > 0 && tv.getLineCount() >= maxLine) {
                     lineEndIndex = tv.getLayout().getLineEnd(maxLine - 1);
-                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 5) + "... " + " " + expandText;
+                    text = tv.getText().subSequence(0, lineEndIndex - expandText.length() - 5).toString() + "... " + " " + expandText;
                 } else {
                     lineEndIndex = tv.getLayout().getLineEnd(tv.getLayout().getLineCount() - 1);
-                    text = tv.getText().subSequence(0, lineEndIndex) + " " + expandText;
+                    text = tv.getText().subSequence(0, lineEndIndex).toString() + " " + expandText;
                 }
                 tv.setText(text);
                 tv.setMovementMethod(LinkMovementMethod.getInstance());
-                tv.setText(addClickablePartTextViewResizable(new SpannableString(tv.getText().toString()), tv, lineEndIndex, expandText, viewMore),
-                        TextView.BufferType.SPANNABLE);
+                tv.clearComposingText();
+                tv.setText(text);
+//                tv.setText(addClickablePartTextViewResizable(text, tv, maxLine, expandText, viewMore),
+//                        TextView.BufferType.NORMAL);
             }
         });
     }
 
-    private static SpannableStringBuilder addClickablePartTextViewResizable(final Spanned strSpanned, final TextView tv,
-                                                                            final int maxLine, final String spanableText, final boolean viewMore) {
-        String str = strSpanned.toString();
-        SpannableStringBuilder ssb = new SpannableStringBuilder(strSpanned);
+    private static SpannableString addClickablePartTextViewResizable(final String text,
+                                                                            final TextView tv,
+                                                                            final int maxLine,
+                                                                            final String spanableText,
+                                                                            final boolean viewMore) {
 
-        if (str.contains(spanableText)) {
-            ssb.setSpan(new ClickableSpan() {
+        SpannableString spannableString = new SpannableString(text);
+
+        if (text.contains(spanableText)) {
+            spannableString.setSpan(new ClickableSpan() {
 
                 @Override
                 public void onClick(View widget) {
                     tv.setLayoutParams(tv.getLayoutParams());
-                    tv.setText(tv.getTag().toString(), TextView.BufferType.NORMAL);
+                    String tag = (String)(tv.getTag()) + "";
+                    tv.setText(tag);
                     tv.invalidate();
                     if (viewMore) {
-                        makeTextViewResizable(tv, -1, "View Less", false);
+                        makeTextViewResizable(tv, -1, "Ẩn bớt", false);
                     } else {
-                        makeTextViewResizable(tv, 3, "View More", true);
+                        makeTextViewResizable(tv, 5, "Xem thêm", true);
                     }
 
                 }
-            }, str.indexOf(spanableText), str.indexOf(spanableText) + spanableText.length(), 0);
-
+            }, text.indexOf(spanableText), text.indexOf(spanableText) + spanableText.length(), 0);
         }
-        return ssb;
+        return spannableString;
     }
+
 }
+

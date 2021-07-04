@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
@@ -22,16 +24,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.provider.Settings;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
+import com.example.airbnb.Adapter.RecyclerViewConvenientAdapter;
+import com.example.airbnb.Adapter.RecyclerViewRateAdapter;
 import com.example.airbnb.Adapter.ViewPagerImageAdapter;
+import com.example.airbnb.Model.Rate;
 import com.example.airbnb.Model.Room;
+import com.example.airbnb.Model.User;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
 import com.google.android.gms.common.ConnectionResult;
@@ -53,6 +63,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -66,6 +77,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     GoogleMap map;
 
     Room room;
+    List<Rate> rates;
 
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -83,8 +95,20 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     ViewPager image_vp;
     @BindView(R.id.location_cv)
     CardView location_cv;
-    @BindView(R.id.description_tv)
-    TextView description_tv;
+    @BindView(R.id.description_cv)
+    CardView description_cv;
+    @BindView(R.id.description_tv2)
+    ReadMoreTextView description_tv2;
+    @BindView(R.id.roomLayout_tv)
+    ReadMoreTextView roomLayout_tv;
+    @BindView(R.id.conveniences_rv)
+    RecyclerView conveniences_rv;
+    @BindView(R.id.rate_rv)
+    RecyclerView rate_rv;
+    @BindView(R.id.rate_tv)
+    TextView rate_tv;
+    @BindView(R.id.rules_tv)
+    ReadMoreTextView rules_tv;
 
 
 
@@ -95,6 +119,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         ButterKnife.bind(this);
 
         initRoom();
+        initRates();
         setupActionBar();
 
         checkMyPermission();
@@ -102,9 +127,9 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
             setupMapView(savedInstanceState);
 
         RoomDetailPresenter presenter = new RoomDetailPresenter(this);
-        presenter.setRoom(room);
+        presenter.setRoom();
+        presenter.setRates();
         setupCardView();
-        setupTextView();
     }
 
     private void initRoom() {
@@ -112,11 +137,47 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         String name = "CPR white House - Căn hộ cao cấp ven biển Hồ";
         String location = "99-89 Phó Đức Chính, P. Yên Thế, Thành phố Pleiku, Gia Lai 600000, Vietnam";
         String description = "“CPR white House” là căn hộ cao cấp bậc nhất ngay trung tâm thành phố Pleyku. nơi đây có vị trí thuận lợi, tọa lạc bên bờ biển thơ mộng nổi tiếng thế giới - Biển Hồ, xung quanh là các quán ăn, cửa hàng tiện lợi, nhà thuốc,... đáp ứng mọi nhu cầu về giải trí, sinh hoạt của khách hàng";
+
         ArrayList<String> images = new ArrayList<String>();
         images.add("https://xuonggooccho.com/wp-content/uploads/2019/07/Hinh-anh-phong-ngu-dep-1.jpg");
         images.add("https://thietkenoithat.com/Portals/0/xNews/uploads/2018/6/14/176.jpg");
         images.add("https://dnudecor.vn/wp-content/uploads/2020/10/mau-phong-ve-sinh-dep.jpg");
-        this.room = new Room(id,name,location,description,images);
+
+//        String layout = "Dành cho 5 người  " + "\u2022" + "  1 tầng  " + "\u2022" + "  1 phòng ngủ  " + "\u2022" + "  3 giường  " + "\u2022" + "  1 phòng tắm";
+        String layout = "Dành cho 5 người  " + "\u25cb" + "  1 tầng  " + "\u25cb" + "  1 phòng ngủ  " + "\u25cb" + "  3 giường  " + "\u25cb" + "  1 phòng tắm";
+
+        List<String> conveniences = new ArrayList<String>();
+        conveniences.add(Room.CONVENIENCE_WIFI);
+        conveniences.add(Room.CONVENIENCE_PARKING);
+        conveniences.add(Room.CONVENIENCE_KITCHEN);
+        conveniences.add(Room.CONVENIENCE_AIR_CONDITIONER);
+        conveniences.add(Room.CONVENIENCE_REFRIGERATOR);
+
+        List<String> rules = new ArrayList<String>();
+        rules.add("Không hút thuốc");
+        rules.add("Không thú cưng");
+        rules.add("Giờ yên tĩnh: sau 23:00");
+        rules.add("Làm hỏng đồ trong phòng phải đền bù bằng tiền tương ứng");
+        this.room = new Room(id,name,location,description,images, layout, conveniences);
+        this.room.setRules(rules);
+    }
+
+    private void initRates() {
+        rates = new ArrayList<Rate>();
+        User user1 = new User("Nigga", "https://www.meme-arsenal.com/memes/d1f584838ed6511854fc40d625405039.jpg");
+        User user2 = new User("Hoa rơi cửa phật", "https://i.redd.it/db4j92rgq7031.jpg");
+        User user3 = new User("Long Nè", "https://scontent.fhan2-3.fna.fbcdn.net/v/t1.18169-9/16299301_1808288959412643_3352524105234288532_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=kzArPeJXw9YAX8Z_LFP&_nc_ht=scontent.fhan2-3.fna&oh=4831c201af3b6341ff3df6138566a8c4&oe=60E5DDDB");
+        User user4 = new User("Account", "https://kenh14cdn.com/thumb_w/660/2019/4/21/kimanh1512545110948021684068331371225366714765324491n-15558248313391687412595.jpg");
+
+        String comment1 = "Nơi ở sạch sẽ, thoáng mát\n" + "Không thuê hơi phí";
+        String comment2 = "Quá nà điều tuyệt vời nuôn, nếu cho tôi ở nữa tôi còn đánh thêm";
+        String comment3 = "Thằng em mình học bách khoa cơ khí, sinh năm 96. Tự mày mò học code rồi đi làm remote cho công ty Mỹ 2 năm nay. Mỗi tối online 3-4 giờ là xong việc. Lương tháng 3k6. ";
+        String comment4 = "ok";
+
+        rates.add(new Rate(user1, comment1, 5, 4, 5,4, 4, "tháng 6 năm 3000"));
+        rates.add(new Rate(user3, comment3, 4,5,5,4,5, "tháng 5 năm 2021"));
+        rates.add(new Rate(user2, comment2, 5,5,5,5,5, "tháng 7 năm 3000"));
+        rates.add(new Rate(user4, comment4, 5, 5, 5, 5, 5, "tháng 6 năm 2021"));
     }
 
     void setupCardView()
@@ -141,10 +202,16 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
                 }
             }
         });
+        description_cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
     }
     void setupTextView()
     {
-        Utils.makeTextViewResizable(description_tv, 4, "Xem thêm", true);
+//        Utils.makeTextViewResizable(description_tv, 5, "Xem thêm", true);
     }
     private void checkMyPermission() {
         Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
@@ -214,6 +281,23 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
+    private void setConveniences()
+    {
+        RecyclerViewConvenientAdapter adapter = new RecyclerViewConvenientAdapter(this, room.getConveniences());
+        conveniences_rv.setAdapter(adapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false);
+        conveniences_rv.setLayoutManager(layoutManager);
+        conveniences_rv.setNestedScrollingEnabled(true);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void setRules(int maxLine)
+    {
+        for (String rule: this.room.getRules())
+        {
+            this.rules_tv.append("\u25cb " + rule + "\n");
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_room_detail, menu);
@@ -261,7 +345,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     }
 
     @Override
-    public void setRoom(Room room) {
+    public void setRoom() {
         if(room == null)
             return;
         ViewPagerImageAdapter adapter = new ViewPagerImageAdapter(this, room.getImages());
@@ -270,7 +354,28 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         adapter.notifyDataSetChanged();
 
         location_tv.setText(room.getLocation());
-        description_tv.setText(room.getDescription());
+
+        description_tv2.setText(room.getDescription() + "  ");
+        roomLayout_tv.setText(room.getLayout() + "  ");
+
+        setConveniences();
+        setRules(1);
+    }
+
+    @Override
+    public void setRates() {
+        float point = 0;
+        for(Rate item: rates)
+            point += item.getPoint();
+
+        point = (float) (Math.round(point/rates.size() * 10.0)/10.0);
+        rate_tv.setText(point + " (" + rates.size() + " đánh giá)");
+
+        RecyclerViewRateAdapter adapter = new RecyclerViewRateAdapter(this, rates);
+        rate_rv.setAdapter(adapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        rate_rv.setLayoutManager(layoutManager);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

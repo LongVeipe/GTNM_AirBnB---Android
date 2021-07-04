@@ -6,6 +6,16 @@
     <string name="Recipes">Recipes</string>
     <string name="location">Vị trí</string>
     <string name="destination">Mô tả</string>
+    <string name="room_layout">Bố trí phòng</string>
+    <string name="convenience">Tiện nghi</string>
+    <string name="rate">Đánh giá</string>
+    <string name="name">Tên</string>
+    <string name="date">tháng mm năm YYYY</string>
+    <string name="rule">Quy định</string>
+    <string name="show_all">Hiển thị tất cả</string>
+    <string name="show_more"> Xem thêm</string>
+    <string name="show_more_trim_line">\n Xem thêm</string>
+    <string name="show_less">  Ẩn bớt</string>
     <string name="country">Country</string>
     <string name="instructions">INSTRUCTIONS</string>
     <string name="dot_loading">...</string>
