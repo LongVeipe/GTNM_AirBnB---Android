@@ -18,7 +18,20 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import androidx.core.util.Pair;
 import androidx.core.view.ContentInfoCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Utils {
 
@@ -28,6 +41,65 @@ public class Utils {
             alertDialog.cancel();
         }
         return alertDialog;
+    }
+
+
+    public static String formatPrice(int price)
+    {
+        String priceStr = price + "";
+        if(priceStr.length() < 4)
+            return priceStr;
+        return formatPrice(price/1000) + "." + String.copyValueOf(priceStr.toCharArray(), priceStr.length() - 4, 3);
+    }
+
+    public static MaterialDatePicker<Pair<Long, Long>> createDateRangePicker()
+    {
+        //calendar
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        calendar.clear();
+        Long today = MaterialDatePicker.todayInUtcMilliseconds();
+        Long thisMonth = MaterialDatePicker.thisMonthInUtcMilliseconds();
+        //calendar.setTimeInMillis(today);
+
+        //Calendar Constraint
+        CalendarConstraints.Builder constraintsBuilder = new CalendarConstraints.Builder();
+        //constraintsBuilder.setOpenAt(thisMonth);
+        constraintsBuilder.setValidator(DateValidatorPointForward.now());
+
+
+        //picker builder
+        MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
+        builder.setTitleText("Chọn ngày nhận và trả phòng");
+        builder.setCalendarConstraints(constraintsBuilder.build());
+
+
+        //picker
+        MaterialDatePicker<Pair<Long, Long>> datePicker = builder.build();
+        return datePicker;
+    }
+
+    public static MaterialTimePicker createTimePicker()
+    {
+        MaterialTimePicker.Builder builder = new MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(12)
+                .setMinute(0)
+                .setTitleText("Chọn giờ nhận phòng");
+        MaterialTimePicker timePicker = builder.build();
+        return timePicker;
+    }
+
+    public static String getTimeStrFromTimePicker(MaterialTimePicker timePicker)
+    {
+        String hour = timePicker.getHour() + "";
+        if(hour.length() < 2)
+            hour = "0" + hour;
+
+        String minute = timePicker.getMinute() + "";
+        if(minute.length() < 2)
+            minute = "0" + minute;
+
+        return hour + ":" + minute;
     }
 
     public static void makeTextViewResizable(final TextView tv, final int maxLine, final String expandText, final boolean viewMore) {

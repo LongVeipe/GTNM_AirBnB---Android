@@ -44,6 +44,7 @@ import com.example.airbnb.Model.Room;
 import com.example.airbnb.Model.User;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
+import com.example.airbnb.View.BookingInfo.BookingInfoActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -55,6 +56,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.button.MaterialButton;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -72,6 +74,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RoomDetailActivity extends AppCompatActivity implements RoomDetailView, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
+    public static final String EXTRA_CURRENT_ROOM = "extra_current_room";
 
     boolean isPermissionGranted;
     GoogleMap map;
@@ -109,7 +113,10 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     TextView rate_tv;
     @BindView(R.id.rules_tv)
     ReadMoreTextView rules_tv;
-
+    @BindView(R.id.booking_btn)
+    MaterialButton booking_btn;
+    @BindView(R.id.price_tv)
+    TextView price_tv;
 
 
     @Override
@@ -121,6 +128,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         initRoom();
         initRates();
         setupActionBar();
+        initBooking_btn();
 
         checkMyPermission();
         if(isPermissionGranted)
@@ -130,6 +138,17 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         presenter.setRoom();
         presenter.setRates();
         setupCardView();
+    }
+
+    private void initBooking_btn() {
+        booking_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BookingInfoActivity.class);
+                intent.putExtra(EXTRA_CURRENT_ROOM, room);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initRoom() {
@@ -160,6 +179,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         rules.add("Làm hỏng đồ trong phòng phải đền bù bằng tiền tương ứng");
         this.room = new Room(id,name,location,description,images, layout, conveniences);
         this.room.setRules(rules);
+        this.room.setPrice(500000);
     }
 
     private void initRates() {
@@ -298,6 +318,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
             this.rules_tv.append("\u25cb " + rule + "\n");
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_room_detail, menu);
@@ -357,9 +378,10 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
 
         description_tv2.setText(room.getDescription() + "  ");
         roomLayout_tv.setText(room.getLayout() + "  ");
-
+        price_tv.setText(Utils.formatPrice(room.getPrice()));
         setConveniences();
         setRules(1);
+
     }
 
     @Override

@@ -9,8 +9,10 @@
     <color name="colorNull">#00000000</color>
     <color name="colorIcons">#7C7F81</color>
     <color name="colorPrimaryText">#1e1e1e</color>
+    <color name="colorSecondaryText">#757575</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGray">#404040</color>
     <color name="colorRed">#FD1100</color>
     <color name="colorWhiteDark">#DBDBDB</color>
     <color name="colorBackground">#F4F7F7</color>

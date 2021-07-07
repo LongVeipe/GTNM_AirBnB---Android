@@ -40,6 +40,9 @@ public class Room implements Serializable {
     @SerializedName("rules")
     @Expose
     private List<String> rules;
+    @SerializedName("price")
+    @Expose
+    private int price;
 
     public Room(String _id, String name, String location, String description, ArrayList<String> images, String layout, List<String> conveniences) {
         this._id = _id;
@@ -107,11 +110,11 @@ public class Room implements Serializable {
         this.conveniences = conveniences;
     }
 
-    public List<String> getRules() {
-        return rules;
-    }
+    public List<String> getRules() { return rules; }
 
-    public void setRules(List<String> rules) {
-        this.rules = rules;
-    }
+    public void setRules(List<String> rules) { this.rules = rules; }
+
+    public int getPrice() { return price; }
+
+    public void setPrice(int price) { this.price = price; }
 }
