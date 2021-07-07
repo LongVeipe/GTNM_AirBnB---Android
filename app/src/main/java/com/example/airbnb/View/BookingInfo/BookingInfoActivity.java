@@ -37,6 +37,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +61,8 @@ public class BookingInfoActivity extends AppCompatActivity {
     TextView date_tv;
     @BindView(R.id.check_in_time_tv)
     TextView time_tv;
+    @BindView(R.id.number_of_people_tv)
+    TextView number_of_people_tv;
 
 
     @Override
@@ -70,6 +74,23 @@ public class BookingInfoActivity extends AppCompatActivity {
         initRoom();
         initToolbar();
         initEditBtn();
+        initDate_tv();
+    }
+
+    private void initDate_tv() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+
+        Long today = MaterialDatePicker.todayInUtcMilliseconds();
+        calendar.setTimeInMillis(today);
+        String strStartDate = calendar.get(Calendar.DAY_OF_MONTH) + " thg " + (calendar.get(Calendar.MONTH) + 1);
+
+
+        calendar.setTimeInMillis(today + TimeUnit.DAYS.toMillis(1));
+        Date endDate = calendar.getTime();
+        String strEndDate = calendar.get(Calendar.DAY_OF_MONTH) + " thg " + (calendar.get(Calendar.MONTH) + 1);
+
+        date_tv.setText(strStartDate + " - " + strEndDate);
     }
 
     private void initRoom() {
@@ -130,11 +151,16 @@ public class BookingInfoActivity extends AppCompatActivity {
         editNumberOfPeople_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogNumberOfPeople();
+                NumberOfPeopleBottomSheetDialogFragment fragment = NumberOfPeopleBottomSheetDialogFragment.getInstant();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
             }
         });
     }
 
+    void setTextNumberOfPeople_tv(String text )
+    {
+        number_of_people_tv.setText(text);
+    }
     void showDialogNumberOfPeople()
     {
         View dialog = getLayoutInflater().inflate(R.layout.dialog_bottom_sheet_number_of_people, null);
