@@ -5,7 +5,7 @@
     <string name="meal_categories">Meal Categories</string>
     <string name="Recipes">Recipes</string>
     <string name="location">Vị trí</string>
-    <string name="destination">Mô tả</string>
+    <string name="description">Mô tả</string>
     <string name="room_layout">Bố trí phòng</string>
     <string name="convenience">Tiện nghi</string>
     <string name="rate">Đánh giá</string>
@@ -29,6 +29,15 @@
     <string name="save">Lưu</string>
     <string name="one_person">1 người</string>
     <string name="time_example">09:00</string>
+    <string name="price_detail">Chi tiết giá</string>
+    <string name="service_price">Giá dịch vụ</string>
+    <string name="cleaning_price">Phí vệ sinh</string>
+    <string name="total_price">Tổng (VND)</string>
+    <string name="payment_method">Phương thức thanh toán</string>
+    <string name="visa">Thẻ thanh toán quốc tế VISA</string>
+    <string name="pay_pal">PayPal</string>
+    <string name="atm">Thẻ ATM nội địa / Internet Banking</string>
+    <string name="pay">Thanh toán</string>
     <string name="show_all">Hiển thị tất cả</string>
     <string name="show_more"> Xem thêm</string>
     <string name="show_more_trim_line">\n Xem thêm</string>

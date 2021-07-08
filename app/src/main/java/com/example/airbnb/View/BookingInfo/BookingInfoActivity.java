@@ -35,6 +35,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -63,6 +64,8 @@ public class BookingInfoActivity extends AppCompatActivity {
     TextView time_tv;
     @BindView(R.id.number_of_people_tv)
     TextView number_of_people_tv;
+    @BindView(R.id.continue_btn)
+    MaterialButton continue_btn;
 
 
     @Override
@@ -75,6 +78,18 @@ public class BookingInfoActivity extends AppCompatActivity {
         initToolbar();
         initEditBtn();
         initDate_tv();
+        initContinue_btn();
+    }
+
+    private void initContinue_btn() {
+        continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] dates = date_tv.getText().toString().split(" - ");
+                int start = Integer.parseInt(String.valueOf(dates[0].charAt(0)));
+                int end = Integer.parseInt(String.valueOf(dates[1].charAt(0)));
+            }
+        });
     }
 
     private void initDate_tv() {
