@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.airbnb.R;
+
 public class RoomLocationActivity extends AppCompatActivity {
 
     @Override

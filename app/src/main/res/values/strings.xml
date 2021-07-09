@@ -41,4 +41,12 @@
 
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="true">AIzaSyBAbpbYPQNydgP83_WkCV8DRf0QJb0XbQc</string>
+    <string name="title_activity_login">Đăng Nhập</string>
+    <string name="username">Tên Đăng Nhập</string>
+    <string name="password">Mật Khẩu</string>
+    <string name="register">Đăng Ký</string>
+    <string name="signin">Đăng Nhập</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="login">ĐĂNG NHẬP</string>
+    <string name="search_content">Bạn Sắp Đi Đâu ?</string>
 </resources>
