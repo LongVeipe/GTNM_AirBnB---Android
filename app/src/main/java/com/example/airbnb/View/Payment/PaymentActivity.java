@@ -1,23 +1,55 @@
 package com.example.airbnb.View.Payment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.airbnb.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.button.MaterialButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity {
 
+    AlertDialog.Builder cardFormDialogBuilder;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.visa_btn)
+    MaterialButton visa_btn;
+    @BindView(R.id.payPal_btn)
+    MaterialButton payPal_btn;
+    @BindView(R.id.atm_btn)
+    MaterialButton ATM_btn;
+    @BindView(R.id.payPalTick_iv)
+    ImageView payPalTick_iv;
+    @BindView(R.id.visaTick_iv)
+    ImageView visaTick_iv;
+    @BindView(R.id.atmTick_iv)
+    ImageView atmTick_iv;
+    @BindView(R.id.visa_layout)
+    RelativeLayout visa_layout;
+    @BindView(R.id.payPal_layout)
+    RelativeLayout payPal_layout;
+    @BindView(R.id.atm_layout)
+    RelativeLayout atm_layout;
+    @BindView(R.id.chooseMethod_btn)
+    MaterialButton chooseMethod_btn;
+    @BindView(R.id.pay_btn)
+    MaterialButton pay_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +58,55 @@ public class PaymentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initToolbar();
+        initATM_btn();
+        initVisa_btn();
+        initChooseMethod_btn();
+        initPay_btn();
+    }
+
+
+    private void initChooseMethod_btn() {
+        chooseMethod_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPayment_layout();
+            }
+        });
+    }
+
+    private void resetPayment_layout() {
+        payPal_layout.setVisibility(View.VISIBLE);
+        visa_layout.setVisibility(View.VISIBLE);
+        atm_layout.setVisibility(View.VISIBLE);
+        payPalTick_iv.setVisibility(View.INVISIBLE);
+        visaTick_iv.setVisibility(View.INVISIBLE);
+        atmTick_iv.setVisibility(View.INVISIBLE);
+        payPal_btn.setEnabled(true);
+        visa_btn.setEnabled(true);
+        ATM_btn.setEnabled(true);
+        chooseMethod_btn.setVisibility(View.GONE);
+    }
+
+    private void initATM_btn() {
+        ATM_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VisaDialogFragment fragment = VisaDialogFragment.getInstant();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
+
+            }
+        });
+    }
+
+    private void initVisa_btn()
+    {
+        visa_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VisaDialogFragment fragment = VisaDialogFragment.getInstant();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
+            }
+        });
     }
 
     private void initToolbar() {
@@ -38,5 +119,34 @@ public class PaymentActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             setTitle("Thanh toán");
         }
+    }
+
+    private void initPay_btn()
+    {
+        pay_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(chooseMethod_btn.getVisibility() == View.GONE)
+                    Toast.makeText(getApplicationContext(), "Bạn chưa chọn hình thức thanh toán", Toast.LENGTH_SHORT).show();
+                else
+                {
+
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

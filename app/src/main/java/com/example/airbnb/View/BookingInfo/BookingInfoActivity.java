@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.airbnb.Model.Room;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
+import com.example.airbnb.View.Payment.PaymentActivity;
 import com.example.airbnb.View.RoomDetail.RoomDetailActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -88,6 +89,9 @@ public class BookingInfoActivity extends AppCompatActivity {
                 String[] dates = date_tv.getText().toString().split(" - ");
                 int start = Integer.parseInt(String.valueOf(dates[0].charAt(0)));
                 int end = Integer.parseInt(String.valueOf(dates[1].charAt(0)));
+
+                Intent intent = new Intent(BookingInfoActivity.this, PaymentActivity.class);
+                startActivity(intent);
             }
         });
     }
