@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.airbnb.Model.Room;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
+import com.example.airbnb.View.Payment.PaymentActivity;
 import com.example.airbnb.View.RoomDetail.RoomDetailActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -35,8 +36,11 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,6 +63,10 @@ public class BookingInfoActivity extends AppCompatActivity {
     TextView date_tv;
     @BindView(R.id.check_in_time_tv)
     TextView time_tv;
+    @BindView(R.id.number_of_people_tv)
+    TextView number_of_people_tv;
+    @BindView(R.id.continue_btn)
+    MaterialButton continue_btn;
 
 
     @Override
@@ -70,6 +78,38 @@ public class BookingInfoActivity extends AppCompatActivity {
         initRoom();
         initToolbar();
         initEditBtn();
+        initDate_tv();
+        initContinue_btn();
+    }
+
+    private void initContinue_btn() {
+        continue_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String[] dates = date_tv.getText().toString().split(" - ");
+                int start = Integer.parseInt(String.valueOf(dates[0].charAt(0)));
+                int end = Integer.parseInt(String.valueOf(dates[1].charAt(0)));
+
+                Intent intent = new Intent(BookingInfoActivity.this, PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initDate_tv() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.clear();
+
+        Long today = MaterialDatePicker.todayInUtcMilliseconds();
+        calendar.setTimeInMillis(today);
+        String strStartDate = calendar.get(Calendar.DAY_OF_MONTH) + " thg " + (calendar.get(Calendar.MONTH) + 1);
+
+
+        calendar.setTimeInMillis(today + TimeUnit.DAYS.toMillis(1));
+        Date endDate = calendar.getTime();
+        String strEndDate = calendar.get(Calendar.DAY_OF_MONTH) + " thg " + (calendar.get(Calendar.MONTH) + 1);
+
+        date_tv.setText(strStartDate + " - " + strEndDate);
     }
 
     private void initRoom() {
@@ -130,11 +170,16 @@ public class BookingInfoActivity extends AppCompatActivity {
         editNumberOfPeople_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogNumberOfPeople();
+                NumberOfPeopleBottomSheetDialogFragment fragment = NumberOfPeopleBottomSheetDialogFragment.getInstant();
+                fragment.show(getSupportFragmentManager(), fragment.getTag());
             }
         });
     }
 
+    void setTextNumberOfPeople_tv(String text )
+    {
+        number_of_people_tv.setText(text);
+    }
     void showDialogNumberOfPeople()
     {
         View dialog = getLayoutInflater().inflate(R.layout.dialog_bottom_sheet_number_of_people, null);

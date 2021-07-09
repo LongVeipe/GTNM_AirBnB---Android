@@ -6,6 +6,7 @@
  -----------------------------------------------------------------------------*/
 package com.example.airbnb;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.text.SpannableString;
@@ -14,6 +15,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
@@ -165,6 +167,36 @@ public class Utils {
             }, text.indexOf(spanableText), text.indexOf(spanableText) + spanableText.length(), 0);
         }
         return spannableString;
+    }
+
+    public static class LoadingDialog{
+        Activity activity;
+        AlertDialog dialog;
+        String title;
+        public LoadingDialog(Activity activity, String title)
+        {
+            this.activity = activity;
+            this.title = title;
+        }
+
+        public void startLoading(){
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            LayoutInflater layoutInflater = activity.getLayoutInflater();
+            View view = layoutInflater.inflate(R.layout.dialog_loading, null);
+
+            builder.setView(view);
+            builder.setCancelable(true);
+
+            dialog = builder.create();
+            TextView textView = (TextView) view.findViewById(R.id.title_tv);
+            textView.setText(title);
+            dialog.show();
+        }
+
+        public void dismiss()
+        {
+            dialog.dismiss();
+        }
     }
 
 }

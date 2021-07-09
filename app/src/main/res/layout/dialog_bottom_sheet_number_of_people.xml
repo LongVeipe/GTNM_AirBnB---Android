@@ -68,7 +68,7 @@
             android:layout_toLeftOf="@id/adultUp_btn"
             android:layout_centerVertical="true"
             android:paddingHorizontal="28dp"
-            android:text="0"
+            android:text="1"
             android:textSize="18sp"
             android:textColor="@color/colorPrimaryText"/>
 
@@ -84,6 +84,7 @@
             app:iconSize="35dp"
             app:iconPadding="0dp"
             app:cornerRadius="20dp"
+            android:enabled="false"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
     </RelativeLayout>
 
@@ -150,6 +151,7 @@
             app:iconSize="35dp"
             app:iconPadding="0dp"
             app:cornerRadius="20dp"
+            android:enabled="false"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"/>
     </RelativeLayout>
 
@@ -169,6 +171,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/delete"
@@ -181,6 +184,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorBackground"
-    tools:context=".View.BookingInfo.BookingInfoActivity">
+    tools:context=".View.Payment.PaymentActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -136,9 +136,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -149,19 +149,20 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="16dp"
-                android:text="@string/your_trip"
+                android:text="@string/price_detail"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/description_cv"
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:clickable="true">
+                app:cardElevation="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -170,148 +171,93 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:paddingTop="14dp"
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="14dp">
                         <TextView
-                            android:id="@+id/dayTittle_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginTop="14dp"
-                            android:text="@string/day_check_in_check_out"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/editDay_btn"
+                            android:layout_height="match_parent"
+                            android:text="500.000 x 2 ngày"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"/>
+                        <TextView
+                            android:id="@+id/roomPrice_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:text="@string/edit"
-                            android:textAllCaps="false"
-                            android:textSize="16sp"
                             android:layout_alignParentEnd="true"
-                            android:paddingVertical="0dp"
-                            android:paddingHorizontal="14dp"
-                            android:layout_marginTop="10dp"
-                            android:minWidth="0dp"
-                            android:minHeight="0dp"/>
+                            android:text="1.000.000"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="16sp"/>
 
-                        <TextView
-                            android:id="@+id/date_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_below="@+id/dayTittle_tv"
-                            android:text="@string/dot_loading"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorSecondaryText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="14dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/service_price"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"/>
+                        <TextView
+                            android:id="@+id/servicePrice_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="0"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="16sp"/>
 
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="14dp">
                         <TextView
-                            android:id="@+id/check_in_time_title_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginTop="14dp"
-                            android:text="@string/check_in_time"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/edit_check_in_time_btn"
+                            android:layout_height="match_parent"
+                            android:text="@string/cleaning_price"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"/>
+                        <TextView
+                            android:id="@+id/cleaningPrice_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:text="@string/edit"
-                            android:textAllCaps="false"
-                            android:textSize="16sp"
                             android:layout_alignParentEnd="true"
-                            android:paddingVertical="0dp"
-                            android:paddingHorizontal="14dp"
-                            android:layout_marginTop="10dp"
-                            android:minWidth="0dp"
-                            android:minHeight="0dp"/>
+                            android:text="0"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="16sp"/>
 
-                        <TextView
-                            android:id="@+id/check_in_time_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_below="@+id/check_in_time_title_tv"
-                            android:text="@string/time_example"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorSecondaryText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
                     </RelativeLayout>
-
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="14dp">
                         <TextView
-                            android:id="@+id/number_of_people_title_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginTop="14dp"
-                            android:text="@string/number_of_people"
-                            android:textColor="@color/colorPrimaryText"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/edit_number_of_people_title_btn"
+                            android:layout_height="match_parent"
+                            android:text="@string/total_price"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryText"/>
+                        <TextView
+                            android:id="@+id/totalPrice_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/Widget.MaterialComponents.Button.TextButton"
-                            android:text="@string/edit"
-                            android:textAllCaps="false"
-                            android:textSize="16sp"
                             android:layout_alignParentEnd="true"
-                            android:paddingVertical="0dp"
-                            android:paddingHorizontal="14dp"
-                            android:layout_marginTop="10dp"
-                            android:minWidth="0dp"
-                            android:minHeight="0dp"/>
+                            android:text="1.000.000"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp"/>
 
-                        <TextView
-                            android:id="@+id/number_of_people_tv"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_below="@+id/number_of_people_title_tv"
-                            android:text="@string/one_person"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorSecondaryText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="5dp"
-                android:text="@string/inbox_to_host"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:gravity="center_vertical"
-                android:drawablePadding="10dp" />
 
             <androidx.cardview.widget.CardView
                 app:cardUseCompatPadding="true"
@@ -320,59 +266,149 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:clickable="true">
-                
+                app:cardElevation="1dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
                     android:orientation="vertical">
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="14dp"
-                        android:text="@string/note_for_inbox"
+                        android:paddingLeft="14dp"
+                        android:paddingRight="14dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/payment_method"
                         android:textSize="18sp"
-                        android:textColor="@color/colorSecondaryText"/>
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <RelativeLayout
+                        android:id="@+id/visa_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/visa_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:text="@string/visa"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"
+                            app:icon="@drawable/ic_visa"
+                            app:iconTint="#132BAE"
+                            app:iconSize="38dp"
+                            android:gravity="left|center"
+                            app:iconPadding="14dp"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
+                        <ImageView
+                            android:id="@+id/visaTick_iv"
+                            android:visibility="invisible"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="14dp"
+                            android:src="@drawable/ic_round_done_24"
+                            app:tint="@color/colorGreen"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/payPal_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/payPal_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:text="@string/pay_pal"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"
+                            app:icon="@drawable/paypal"
+                            app:iconSize="26dp"
+                            app:iconTint="@color/colorNull"
+                            app:iconTintMode="add"
+                            android:gravity="left|center"
+                            app:iconPadding="26dp"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                        <ImageView
+                            android:id="@+id/payPalTick_iv"
+                            android:visibility="invisible"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="14dp"
+                            android:src="@drawable/ic_round_done_24"
+                            app:tint="@color/colorGreen"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/atm_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp">
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/atm_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:paddingLeft="14dp"
+                            android:paddingRight="14dp"
+                            android:text="@string/atm"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimaryText"
+                            app:icon="@drawable/ic_atm_sign"
+                            app:iconSize="24dp"
+                            app:iconTint="@color/colorNull"
+                            app:iconTintMode="add"
+                            android:gravity="left|center"
+                            app:iconPadding="26dp"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+                        <ImageView
+                            android:id="@+id/atmTick_iv"
+                            android:visibility="invisible"
+                            android:layout_width="40dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="14dp"
+                            android:src="@drawable/ic_round_done_24"
+                            app:tint="@color/colorGreen"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/chooseMethod_btn"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginBottom="20dp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        android:layout_marginHorizontal="14dp"
+                        android:text="@string/choose_another_method"
+                        android:textAllCaps="false"
+                        android:textSize="18dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/colorPrimaryText"
+                        app:cornerRadius="10dp"
+                        android:shadowColor="@color/colorNull"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/description_edt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minLines="6"
-                            android:hint="@string/message"
-                            android:scrollbars="vertical"
-                            android:inputType="textMultiLine"
-                            android:gravity="top|left"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/continue_btn"
+                android:id="@+id/pay_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginVertical="5dp"
-                android:paddingHorizontal="30dp"
-                android:layout_gravity="right"
+                android:paddingHorizontal="70dp"
+                android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="@string/continueStr"
+                android:text="@string/pay"
                 android:textSize="18sp"
                 android:textAllCaps="false"
-                app:icon="@drawable/ic_baseline_arrow_right_24"
-                app:iconGravity="textEnd"
-                app:iconSize="30dp"
-                app:iconPadding="0dp"
                 app:cornerRadius="10dp">
             </com.google.android.material.button.MaterialButton>
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -7,6 +7,7 @@
     <color name="blue_200">#1d8bd0</color>
     <color name="blue_700">#0c33b0</color>
     <color name="colorNull">#00000000</color>
+    <color name="colorGreen">#14AE1A</color>
     <color name="colorIcons">#7C7F81</color>
     <color name="colorPrimaryText">#1e1e1e</color>
     <color name="colorSecondaryText">#757575</color>
