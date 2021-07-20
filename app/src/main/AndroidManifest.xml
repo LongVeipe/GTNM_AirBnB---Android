@@ -31,7 +31,11 @@
 
         </activity>
         <activity android:name=".View.HostingRoom.HostingRoomActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".View.BookingInfo.BookingInfoActivity">
 
@@ -47,11 +51,7 @@
         <activity android:name=".View.Payment.PaymentActivity"/>
 
         <activity android:name=".View.RoomDetail.RoomDetailActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
 
