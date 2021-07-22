@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import com.example.airbnb.R;
+import com.example.airbnb.View.BookingInfo.BookingInfoActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import butterknife.BindView;
@@ -127,7 +129,12 @@ public class HostingRoomActivity extends AppCompatActivity {
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
-            setTitle("Thông tin phòng");
+            setTitle("Cho thuê Phòng/Nhà");
         }
+    }
+
+    public void Next(View view) {
+        Intent intent = new Intent(getApplicationContext(), RoomLocationActivity.class);
+        startActivity(intent);
     }
 }
