@@ -15,7 +15,7 @@
         android:fitsSystemWindows="true"
         android:theme="@style/AppBarLayoutTheme">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/hosting_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
@@ -70,6 +70,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="Sử dụng vị trí hiện tại"
+                        android:onClick="getLocation"
                         android:textSize="18sp"
                         android:textAllCaps="false"
                         app:icon="@drawable/ic_baseline_location_on_24"
@@ -102,6 +103,7 @@
                             android:hint="Chọn quốc gia">
 
                             <AutoCompleteTextView
+                                android:id="@+id/country_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -133,6 +135,7 @@
                             android:hint="Chọn tỉnh/ thành phố">
 
                             <AutoCompleteTextView
+                                android:id="@+id/province_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -164,6 +167,7 @@
                             android:hint="Chọn quận/ huyện">
 
                             <AutoCompleteTextView
+                                android:id="@+id/district_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -195,6 +199,7 @@
                             android:hint="Chọn xã/ phường">
 
                             <AutoCompleteTextView
+                                android:id="@+id/commune_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -262,6 +267,7 @@
                                     android:id="@+id/description_edt"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
                                     android:minLines="6"
                                     android:hint="Mô tả, chỉ dẫn tới địa chỉ"
                                     android:scrollbars="vertical"
@@ -271,27 +277,28 @@
 
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/continue_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="28dp"
-                        android:layout_marginVertical="5dp"
-                        android:paddingHorizontal="30dp"
-                        android:layout_gravity="right"
-                        android:gravity="center"
-                        android:text="@string/continueStr"
-                        android:textSize="18sp"
-                        android:textAllCaps="false"
-                        app:icon="@drawable/ic_baseline_arrow_right_24"
-                        app:iconGravity="textEnd"
-                        app:iconSize="30dp"
-                        app:iconPadding="0dp"
-                        app:cornerRadius="10dp">
-                    </com.google.android.material.button.MaterialButton>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continue_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="28dp"
+                android:layout_marginVertical="5dp"
+                android:paddingHorizontal="30dp"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:onClick="Next"
+                android:text="@string/continueStr"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_baseline_arrow_right_24"
+                app:iconGravity="textEnd"
+                app:iconSize="30dp"
+                app:iconPadding="0dp"
+                app:cornerRadius="10dp">
+            </com.google.android.material.button.MaterialButton>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

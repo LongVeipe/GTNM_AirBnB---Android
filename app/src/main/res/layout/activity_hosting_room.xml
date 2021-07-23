@@ -15,7 +15,7 @@
         android:fitsSystemWindows="true"
         android:theme="@style/AppBarLayoutTheme">
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/hosting_toolbar"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
@@ -207,8 +207,10 @@
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
+
+
                         <Button
-                            android:id="@+id/snl_add"
+                            android:id="@+id/snl_minus"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
@@ -216,8 +218,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/snl_id"
                             android:layout_marginStart="25dp"
-                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
-
+                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
                         <EditText
                             android:id="@+id/snl"
                             android:maxLines="1"
@@ -227,17 +228,16 @@
                             android:layout_width="75dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/snl_add" />
-
+                            android:layout_toEndOf="@+id/snl_minus" />
                         <Button
-                            android:id="@+id/snl_minus"
+                            android:id="@+id/snl_add"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/snl"
-                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
+                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginTop="5dp"
@@ -267,7 +267,7 @@
                         </LinearLayout>
 
                         <Button
-                            android:id="@+id/ste_add"
+                            android:id="@+id/ste_minus"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
@@ -275,7 +275,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/ste_id"
                             android:layout_marginStart="25dp"
-                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
+                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
 
                         <EditText
                             android:id="@+id/ste"
@@ -286,17 +286,17 @@
                             android:layout_width="75dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/ste_add" />
+                            android:layout_toEndOf="@+id/ste_minus" />
 
                         <Button
-                            android:id="@+id/ste_minus"
+                            android:id="@+id/ste_add"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/ste"
-                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
+                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginTop="5dp"
@@ -315,7 +315,7 @@
                             android:layout_height="wrap_content" />
 
                         <Button
-                            android:id="@+id/sgn_add"
+                            android:id="@+id/sgn_minus"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
@@ -323,7 +323,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/sgn_id"
                             android:layout_marginStart="25dp"
-                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
+                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
 
                         <EditText
                             android:id="@+id/sgn"
@@ -334,17 +334,17 @@
                             android:layout_width="75dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/sgn_add" />
+                            android:layout_toEndOf="@+id/sgn_minus" />
 
                         <Button
-                            android:id="@+id/sgn_minus"
+                            android:id="@+id/sgn_add"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/sgn"
-                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
+                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginTop="5dp"
@@ -363,7 +363,7 @@
                             android:layout_height="wrap_content" />
 
                         <Button
-                            android:id="@+id/snvs_add"
+                            android:id="@+id/snvs_minus"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
@@ -371,7 +371,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/snvs_id"
                             android:layout_marginStart="25dp"
-                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
+                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
 
                         <EditText
                             android:id="@+id/snvs"
@@ -382,17 +382,17 @@
                             android:layout_width="75dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
-                            android:layout_toEndOf="@+id/snvs_add" />
+                            android:layout_toEndOf="@+id/snvs_minus" />
 
                         <Button
-                            android:id="@+id/snvs_minus"
+                            android:id="@+id/snvs_add"
                             android:onClick="ChangeNumber"
                             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/snvs"
-                            app:icon="@drawable/ic_round_remove_circle_outline_24" />
+                            app:icon="@drawable/ic_baseline_add_circle_outline_24" />
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -588,6 +588,8 @@
                 android:drawablePadding="10dp"
                 tools:ignore="RtlSymmetry" />
             <androidx.cardview.widget.CardView
+                android:id="@+id/after_cv"
+                android:visibility="gone"
                 app:cardUseCompatPadding="true"
                 app:cardCornerRadius="10dp"
                 android:layout_width="match_parent"
@@ -596,16 +598,100 @@
                 android:layout_marginRight="10dp"
                 android:clickable="true"
                 android:focusable="true">
-
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="4"
+                    android:rowCount="1"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_rowWeight="1"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/r6"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="10dp"
+                        android:layout_rowWeight="1"
+                        android:background="@drawable/r2"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="10dp"
+                        android:layout_rowWeight="1"
+                        android:background="@drawable/r3"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:onClick="getImage"
+                        android:backgroundTint="@color/colorWhite"
+                        app:icon="@drawable/ic_baseline_add_24"
+                        style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                        app:iconGravity="textEnd"
+                        app:iconSize="60dp"
+                        app:strokeColor="@color/colorBlack"
+                        app:strokeWidth="1dp"
+                        android:layout_height="100dp"
+                        android:maxWidth="80dp"
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_rowWeight="1"
+                        app:cornerRadius="5dp">
+                    </com.google.android.material.button.MaterialButton>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/before_cv"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:focusable="true">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:columnCount="4"
+                    android:rowCount="1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/get_location_btn"
+                        android:backgroundTint="@color/colorPrimaryLight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="5dp"
+                        android:paddingHorizontal="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Thêm hình ảnh"
+                        android:textSize="18sp"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_baseline_add_24"
+                        app:iconGravity="textEnd"
+                        app:iconSize="30dp"
+                        app:iconPadding="20dp"
+                        app:cornerRadius="10dp"
+                        android:onClick="getImage">
+                    </com.google.android.material.button.MaterialButton>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"/>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/continue_btn"
+                android:onClick="Next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
