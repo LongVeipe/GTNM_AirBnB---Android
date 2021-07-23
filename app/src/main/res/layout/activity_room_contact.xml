@@ -83,6 +83,7 @@
                             android:hint="Chọn hình thức liên hệ">
 
                             <AutoCompleteTextView
+                                android:id="@+id/contact_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -147,6 +148,7 @@
                             android:hint="Chọn hình thức thanh toán">
 
                             <AutoCompleteTextView
+                                android:id="@+id/payment_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -211,6 +213,7 @@
                             android:hint="Chọn ngân hàng">
 
                             <AutoCompleteTextView
+                                android:id="@+id/bank_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -264,6 +267,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="Xác Nhận"
+                android:onClick="Next"
                 android:textSize="18sp"
                 android:textAllCaps="false"
                 app:cornerRadius="10dp">

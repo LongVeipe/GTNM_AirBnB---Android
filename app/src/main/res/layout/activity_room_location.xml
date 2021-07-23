@@ -70,6 +70,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="Sử dụng vị trí hiện tại"
+                        android:onClick="getLocation"
                         android:textSize="18sp"
                         android:textAllCaps="false"
                         app:icon="@drawable/ic_baseline_location_on_24"
@@ -102,6 +103,7 @@
                             android:hint="Chọn quốc gia">
 
                             <AutoCompleteTextView
+                                android:id="@+id/country_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -133,6 +135,7 @@
                             android:hint="Chọn tỉnh/ thành phố">
 
                             <AutoCompleteTextView
+                                android:id="@+id/province_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -164,6 +167,7 @@
                             android:hint="Chọn quận/ huyện">
 
                             <AutoCompleteTextView
+                                android:id="@+id/district_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -195,6 +199,7 @@
                             android:hint="Chọn xã/ phường">
 
                             <AutoCompleteTextView
+                                android:id="@+id/commune_actv"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none"
@@ -284,6 +289,7 @@
                 android:paddingHorizontal="30dp"
                 android:layout_gravity="right"
                 android:gravity="center"
+                android:onClick="Next"
                 android:text="@string/continueStr"
                 android:textSize="18sp"
                 android:textAllCaps="false"

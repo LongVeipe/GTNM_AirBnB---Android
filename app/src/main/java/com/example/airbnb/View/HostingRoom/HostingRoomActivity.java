@@ -1,28 +1,50 @@
 package com.example.airbnb.View.HostingRoom;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
+import com.example.airbnb.Adapter.PhotoAdapter;
+import com.example.airbnb.MainActivity;
 import com.example.airbnb.R;
 import com.example.airbnb.View.BookingInfo.BookingInfoActivity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import gun0912.tedbottompicker.TedBottomPicker;
+
 
 public class HostingRoomActivity extends AppCompatActivity {
+    private static final int PICK_IMAGE = 1;
+    private static final int REQUEST_EXTERNAL_STORAGE = 100;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.rt_actv)
@@ -31,8 +53,10 @@ public class HostingRoomActivity extends AppCompatActivity {
     AutoCompleteTextView range_actv;
     @BindView(R.id.st_actv)
     AutoCompleteTextView st_actv;
+    @BindView(R.id.rcv_photo)
+    RecyclerView rcv_photo;
 
-
+    private PhotoAdapter photoAdapter;
     ArrayAdapter rt_ad;
     ArrayAdapter range_ad;
     ArrayAdapter st_ad;
@@ -44,8 +68,17 @@ public class HostingRoomActivity extends AppCompatActivity {
 
         initToolbar();
         initOptions();
-
+        initAdapter();
     }
+
+    private void initAdapter() {
+        photoAdapter = new PhotoAdapter(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3, LinearLayoutManager.VERTICAL,false);
+        rcv_photo.setLayoutManager(gridLayoutManager);
+        rcv_photo.setFocusable(false);
+        rcv_photo.setAdapter(photoAdapter);
+    }
+
     public void ChangeNumber(View view) {
 
         EditText edt;
@@ -136,5 +169,48 @@ public class HostingRoomActivity extends AppCompatActivity {
     public void Next(View view) {
         Intent intent = new Intent(getApplicationContext(), RoomLocationActivity.class);
         startActivity(intent);
+    }
+
+    public void getImage(View view) {
+        requestPermissions();
+    }
+
+    private void requestPermissions() {
+        PermissionListener permissionlistener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                openBottomPicker();
+            }
+
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions) {
+                Toast.makeText(HostingRoomActivity.this, "Permission Denied\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+        TedPermission.with(this)
+                .setPermissionListener(permissionlistener)
+                .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .check();
+    }
+    private void openBottomPicker(){
+        TedBottomPicker.OnMultiImageSelectedListener listener = new TedBottomPicker.OnMultiImageSelectedListener() {
+            @Override
+            public void onImagesSelected(ArrayList<Uri> uriList) {
+                photoAdapter.setData(uriList);
+            }
+        };
+        TedBottomPicker tedBottomPicker = new TedBottomPicker.Builder(HostingRoomActivity.this)
+                .setOnMultiImageSelectedListener(listener)
+                .setCompleteButtonText("HOÀN THÀNH")
+                .setEmptySelectionText("Chưa có hình ảnh nào")
+                .create()   ;
+        tedBottomPicker.show(getSupportFragmentManager());
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return true;
     }
 }

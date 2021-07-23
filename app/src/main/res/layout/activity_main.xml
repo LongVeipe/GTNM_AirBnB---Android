@@ -72,122 +72,126 @@
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="18sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingBottom="20dp">
-
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="20dp">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                app:layout_collapseMode="parallax">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/room_1"
-                                    app:shapeAppearanceOverlay="@style/ConnerRadius10"></com.google.android.material.imageview.ShapeableImageView>
+                                android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="75dp"
-                                    android:layout_marginStart="10dp"
-                                    android:orientation="vertical">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    app:layout_collapseMode="parallax">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:maxLines="2"
-                                        android:text="Nha Trang"
-                                        android:textColor="@color/colorPrimaryText"
-                                        android:textSize="18sp"
-                                        android:textStyle="bold" />
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:layout_width="75dp"
+                                        android:layout_height="75dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/nhatrang"
+                                        app:shapeAppearanceOverlay="@style/ConnerRadius10"></com.google.android.material.imageview.ShapeableImageView>
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:ellipsize="end"
-                                        android:maxLines="2"
-                                        android:text="300km"
-                                        android:textColor="@color/colorPrimaryText"
-                                        android:textSize="12dp" />
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="75dp"
+                                        android:layout_marginStart="10dp"
+                                        android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="5 giờ lái xe"
-                                        android:textColor="@color/colorAccent"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:maxLines="2"
+                                            android:text="Nha Trang"
+                                            android:textColor="@color/colorPrimaryText"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
 
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="2"
+                                            android:text="300km"
+                                            android:textColor="@color/colorPrimaryText"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="5 giờ lái xe"
+                                            android:textColor="@color/colorAccent"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
                                 </LinearLayout>
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                app:layout_collapseMode="parallax">
-
-                                <com.google.android.material.imageview.ShapeableImageView
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/room_1"
-                                    app:shapeAppearanceOverlay="@style/ConnerRadius10"></com.google.android.material.imageview.ShapeableImageView>
 
                                 <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="75dp"
-                                    android:layout_marginStart="10dp"
-                                    android:orientation="vertical">
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    app:layout_collapseMode="parallax">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:ellipsize="end"
-                                        android:maxLines="2"
-                                        android:text="Nha Trang"
-                                        android:textColor="@color/colorPrimaryText"
-                                        android:textSize="18sp"
-                                        android:textStyle="bold" />
+                                    <com.google.android.material.imageview.ShapeableImageView
+                                        android:layout_width="75dp"
+                                        android:layout_height="75dp"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/vungtau"
+                                        app:shapeAppearanceOverlay="@style/ConnerRadius10"></com.google.android.material.imageview.ShapeableImageView>
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:ellipsize="end"
-                                        android:maxLines="2"
-                                        android:text="300km"
-                                        android:textColor="@color/colorPrimaryText"
-                                        android:textSize="12dp" />
+                                    <LinearLayout
+                                        android:layout_width="100dp"
+                                        android:layout_height="75dp"
+                                        android:layout_marginStart="10dp"
+                                        android:orientation="vertical">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="5 giờ lái xe"
-                                        android:textColor="@color/colorAccent"
-                                        android:textSize="12sp"
-                                        android:textStyle="bold" />
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:ellipsize="end"
+                                            android:maxLines="2"
+                                            android:text="Vũng Tàu"
+                                            android:textColor="@color/colorPrimaryText"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
 
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="2"
+                                            android:text="100km"
+                                            android:textColor="@color/colorPrimaryText"
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="5dp"
+                                            android:text="2 giờ lái xe"
+                                            android:textColor="@color/colorAccent"
+                                            android:textSize="12sp"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
+                    </HorizontalScrollView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -346,7 +350,7 @@
                                 android:layout_width="140dp"
                                 android:layout_height="140dp"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/room_1"
+                                android:src="@drawable/r6"
                                 app:shapeAppearanceOverlay="@style/ConnerRadius10"></com.google.android.material.imageview.ShapeableImageView>
 
                             <LinearLayout
@@ -360,7 +364,7 @@
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
                                     android:maxLines="2"
-                                    android:text="Căn hộ cao cấp ven biển hồ"
+                                    android:text="Nhà nguyên căn Thủ Đức"
                                     android:textColor="@color/colorPrimaryText"
                                     android:textSize="18sp"
                                     android:textStyle="bold" />
@@ -371,7 +375,7 @@
                                     android:layout_marginBottom="10dp"
                                     android:ellipsize="end"
                                     android:maxLines="2"
-                                    android:text="Khu du lịch sinh thái Bắc Tây Nguyên, Pleyku, Gia Lai"
+                                    android:text="Căn hộ với đầy đủ tiện nghi"
                                     android:textColor="@color/colorPrimaryText"
                                     android:textSize="12dp" />
 
@@ -384,7 +388,7 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="500.000"
+                                        android:text="400.000"
                                         android:textColor="@color/colorAccent"
                                         android:textSize="12sp"
                                         android:textStyle="bold" />
