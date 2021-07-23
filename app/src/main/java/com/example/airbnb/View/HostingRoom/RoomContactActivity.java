@@ -7,18 +7,25 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
 import com.example.airbnb.MainActivity;
 import com.example.airbnb.R;
+import com.example.airbnb.Utils;
+import com.example.airbnb.View.Payment.PaymentActivity;
+import com.example.airbnb.View.RoomDetail.RoomDetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RoomContactActivity extends AppCompatActivity {
+    Utils.LoadingDialog completeDialog;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -76,7 +83,20 @@ public class RoomContactActivity extends AppCompatActivity {
         return true;
     }
     public void Next(View view) {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        completeDialog = new Utils.LoadingDialog(RoomContactActivity.this, "Đang xử lý ...");
+        completeDialog.startLoading();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                completeDialog.dismiss();
+
+                Intent intent = new Intent(RoomContactActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                Toast.makeText(getApplicationContext(), "Thêm phòng thành công", Toast.LENGTH_SHORT).show();
+            }
+        }, 2000);
     }
 }
