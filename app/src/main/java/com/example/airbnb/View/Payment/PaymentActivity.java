@@ -158,12 +158,10 @@ public class PaymentActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             completeDialog.dismiss();
-
                             Intent intent = new Intent(PaymentActivity.this, RoomDetailActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
-
                             Toast.makeText(getApplicationContext(), "Đặt phòng thành công", Toast.LENGTH_SHORT).show();
                         }
                     }, 2000);

@@ -31,7 +31,11 @@
         </activity>
         <activity android:name=".View.HostingRoom.RoomLocationActivity" />
         <activity android:name=".View.Login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".View.HostingRoom.HostingRoomActivity">
         </activity>
@@ -50,11 +54,6 @@
         <activity android:name=".View.RoomDetail.RoomDetailActivity">
         </activity>
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

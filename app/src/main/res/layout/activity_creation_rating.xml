@@ -61,7 +61,7 @@
                     android:progressTint="@color/colorAccent"
                     android:isIndicator="false"
                     android:stepSize="1"
-                    android:rating="1"
+                    android:rating="5"
                     android:clickable="true"
                     android:numStars="5"/>
             </LinearLayout>
@@ -86,18 +86,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="21"
                 android:orientation="horizontal">
+
                 <RatingBar
                     android:id="@+id/convenience_rb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
-                    android:progressBackgroundTint="@color/colorBlack"
-                    android:secondaryProgressTint="@color/colorAccent"
-                    android:progressTint="@color/colorAccent"
-                    android:stepSize="1"
-                    android:rating="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:isIndicator="false"
-                    android:numStars="5"/>
+                    android:numStars="5"
+                    android:progressBackgroundTint="@color/colorBlack"
+                    android:progressTint="@color/colorAccent"
+                    android:rating="5"
+                    android:secondaryProgressTint="@color/colorAccent"
+                    android:stepSize="1" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -125,14 +126,14 @@
                     android:id="@+id/location_rb"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:isIndicator="false"
                     android:numStars="5"
                     android:progressBackgroundTint="@color/colorBlack"
                     android:progressTint="@color/colorAccent"
-                    android:stepSize="1"
-                    android:rating="1"
-                    android:isIndicator="false"
-                    android:secondaryProgressTint="@color/colorAccent" />
+                    android:rating="5"
+                    android:secondaryProgressTint="@color/colorAccent"
+                    android:stepSize="1" />
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -164,7 +165,7 @@
                     android:secondaryProgressTint="@color/colorAccent"
                     android:progressTint="@color/colorAccent"
                     android:stepSize="1"
-                    android:rating="1"
+                    android:rating="5"
                     android:isIndicator="false"
                     android:numStars="5"/>
             </LinearLayout>
@@ -199,7 +200,7 @@
                     android:progressTint="@color/colorAccent"
                     android:isIndicator="false"
                     android:stepSize="1"
-                    android:rating="1"
+                    android:rating="5"
                     android:numStars="5"/>
             </LinearLayout>
         </LinearLayout>

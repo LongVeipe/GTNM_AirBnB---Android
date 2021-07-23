@@ -79,7 +79,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     public static final String EXTRA_CURRENT_ROOM = "extra_current_room";
     public static final String EXTRA_RATES = "extra_rates";
 
-    boolean isPermissionGranted;
+    boolean isPermissionGranted = false;
     GoogleMap map;
 
     Room room;
@@ -255,7 +255,6 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
                 isPermissionGranted = true;
             }
 
