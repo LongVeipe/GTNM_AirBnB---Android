@@ -59,6 +59,8 @@
     <string name="youtube">YOUTUBE</string>
     <string name="source">SOURCE</string>
     <string name="favorite">Favorite</string>
+    <string name="write_rating">Viết đánh giá</string>
+    <string name="scores_example">4.5</string>
 
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="true">AIzaSyBAbpbYPQNydgP83_WkCV8DRf0QJb0XbQc</string>

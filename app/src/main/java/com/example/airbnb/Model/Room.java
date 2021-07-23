@@ -43,6 +43,9 @@ public class Room implements Serializable {
     @SerializedName("price")
     @Expose
     private int price;
+    @SerializedName("rates")
+    @Expose
+    private List<Rate> rates;
 
     public Room(String _id, String name, String location, String description, ArrayList<String> images, String layout, List<String> conveniences) {
         this._id = _id;
@@ -117,4 +120,12 @@ public class Room implements Serializable {
     public int getPrice() { return price; }
 
     public void setPrice(int price) { this.price = price; }
+
+    public List<Rate> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<Rate> rates) {
+        this.rates = rates;
+    }
 }

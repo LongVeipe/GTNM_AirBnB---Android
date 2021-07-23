@@ -1,6 +1,8 @@
 package com.example.airbnb.View.Payment;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import androidx.annotation.Nullable;
 import com.craftman.cardform.CardForm;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
@@ -73,13 +76,12 @@ public class VisaDialogFragment extends BottomSheetDialogFragment {
 
     private void setupCardForm(BottomSheetDialog dialog) {
         payment_amount.setText("1.000.000 vnđ");
+        payment_amount.setTextColor(getContext().getColor(R.color.colorPrimary));
+        payment_amount.setTypeface(Typeface.DEFAULT_BOLD);
         payment_amount_holder.setText("");
         card_name.setHint("Tên thẻ");
         expiry_date.setHint("Ngày hết hạn");
         card_number.setHint("Số thẻ");
-        btn_pay.setText("Thanh toán 1.000.000 Vnđ");
-        btn_pay.setClickable(true);
-        btn_pay.setFocusable(true);
         btn_pay.setVisibility(View.GONE);
     }
 

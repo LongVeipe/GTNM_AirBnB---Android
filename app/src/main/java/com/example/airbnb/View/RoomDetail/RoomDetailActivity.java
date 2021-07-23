@@ -45,6 +45,7 @@ import com.example.airbnb.Model.User;
 import com.example.airbnb.R;
 import com.example.airbnb.Utils;
 import com.example.airbnb.View.BookingInfo.BookingInfoActivity;
+import com.example.airbnb.View.Rating.RatingActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -76,6 +77,7 @@ import butterknife.ButterKnife;
 public class RoomDetailActivity extends AppCompatActivity implements RoomDetailView, OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static final String EXTRA_CURRENT_ROOM = "extra_current_room";
+    public static final String EXTRA_RATES = "extra_rates";
 
     boolean isPermissionGranted;
     GoogleMap map;
@@ -117,6 +119,8 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
     MaterialButton booking_btn;
     @BindView(R.id.price_tv)
     TextView price_tv;
+    @BindView(R.id.showRating_btn)
+    MaterialButton showRating_btn;
 
 
     @Override
@@ -129,8 +133,10 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         initRates();
         setupActionBar();
         initBooking_btn();
+        initShowRating_btn();
 
         checkMyPermission();
+        mapView.onCreate(savedInstanceState);
         if(isPermissionGranted)
             setupMapView(savedInstanceState);
 
@@ -138,6 +144,17 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         presenter.setRoom();
         presenter.setRates();
         setupCardView();
+    }
+
+    private void initShowRating_btn() {
+        showRating_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RatingActivity.class);
+                intent.putExtra(EXTRA_CURRENT_ROOM, room);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initBooking_btn() {
@@ -186,7 +203,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         rates = new ArrayList<Rate>();
         User user1 = new User("Nigga", "https://www.meme-arsenal.com/memes/d1f584838ed6511854fc40d625405039.jpg");
         User user2 = new User("Hoa rơi cửa phật", "https://i.redd.it/db4j92rgq7031.jpg");
-        User user3 = new User("Long Nè", "https://scontent.fhan2-3.fna.fbcdn.net/v/t1.18169-9/16299301_1808288959412643_3352524105234288532_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=kzArPeJXw9YAX8Z_LFP&_nc_ht=scontent.fhan2-3.fna&oh=4831c201af3b6341ff3df6138566a8c4&oe=60E5DDDB");
+        User user3 = new User("Long Nè", "https://res.cloudinary.com/family-health-handbook/image/upload/v1626945221/220743632_228997012412262_7814597101605007551_n_qfypaj.jpg?fbclid=IwAR2qbAnMPFgFzas_hP95E8MFojCViWjvpbdzCVU1bNvd04R6QpgcZjGSJFY");
         User user4 = new User("Account", "https://kenh14cdn.com/thumb_w/660/2019/4/21/kimanh1512545110948021684068331371225366714765324491n-15558248313391687412595.jpg");
 
         String comment1 = "Nơi ở sạch sẽ, thoáng mát\n" + "Không thuê hơi phí";
@@ -198,6 +215,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         rates.add(new Rate(user3, comment3, 4,5,5,4,5, "tháng 5 năm 2021"));
         rates.add(new Rate(user2, comment2, 5,5,5,5,5, "tháng 7 năm 3000"));
         rates.add(new Rate(user4, comment4, 5, 5, 5, 5, 5, "tháng 6 năm 2021"));
+        room.setRates(rates);
     }
 
     void setupCardView()
@@ -393,7 +411,7 @@ public class RoomDetailActivity extends AppCompatActivity implements RoomDetailV
         point = (float) (Math.round(point/rates.size() * 10.0)/10.0);
         rate_tv.setText(point + " (" + rates.size() + " đánh giá)");
 
-        RecyclerViewRateAdapter adapter = new RecyclerViewRateAdapter(this, rates);
+        RecyclerViewRateAdapter adapter = new RecyclerViewRateAdapter(this, rates, 1);
         rate_rv.setAdapter(adapter);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         rate_rv.setLayoutManager(layoutManager);

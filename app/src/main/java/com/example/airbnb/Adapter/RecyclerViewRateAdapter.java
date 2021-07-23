@@ -27,13 +27,22 @@ public class RecyclerViewRateAdapter extends RecyclerView.Adapter<RecyclerViewRa
     Context context;
     List<Rate> rates;
 
-    public RecyclerViewRateAdapter(Context context, List<Rate> rates) {
+    public RecyclerViewRateAdapter(Context context, List<Rate> rates, int type) {
         this.context = context;
         this.rates = new ArrayList<Rate>();
-        this.rates.add(rates.get(0));
-        this.rates.add(rates.get(1));
+        if(type == 1) {
+            this.rates.add(rates.get(0));
+            this.rates.add(rates.get(1));
+        }
+        else
+            this.rates = rates;
     }
 
+    public void addRating(Rate rate)
+    {
+        rates.add(rate);
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

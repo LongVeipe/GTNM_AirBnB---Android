@@ -172,15 +172,15 @@ public class Utils {
     public static class LoadingDialog{
         Activity activity;
         AlertDialog dialog;
-        String title;
-        public LoadingDialog(Activity activity, String title)
+        String message;
+        public LoadingDialog(Activity activity, String message)
         {
             this.activity = activity;
-            this.title = title;
+            this.message = message;
         }
 
         public void startLoading(){
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             LayoutInflater layoutInflater = activity.getLayoutInflater();
             View view = layoutInflater.inflate(R.layout.dialog_loading, null);
 
@@ -189,7 +189,7 @@ public class Utils {
 
             dialog = builder.create();
             TextView textView = (TextView) view.findViewById(R.id.title_tv);
-            textView.setText(title);
+            textView.setText(message);
             dialog.show();
         }
 
