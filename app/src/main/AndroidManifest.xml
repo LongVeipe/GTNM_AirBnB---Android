@@ -54,6 +54,7 @@
         <activity android:name=".View.RoomDetail.RoomDetailActivity">
         </activity>
         <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
